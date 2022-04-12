@@ -1,0 +1,24 @@
+{
+  "name": "pawm2122",
+  "version": "1.0.0",
+  "description": "PROGETTAZIONE DI APPLICAZIONI WEB E MOBILE -  WEB AND MOBILE APPLICATIONS DESIGN",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damiano00/pawm2122.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damiano00/pawm2122/issues"
+  },
+  "homepage": "https://github.com/damiano00/pawm2122#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
