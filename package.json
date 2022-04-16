@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "PROGETTAZIONE DI APPLICAZIONI WEB E MOBILE -  WEB AND MOBILE APPLICATIONS DESIGN",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +20,8 @@
   },
   "homepage": "https://github.com/damiano00/pawm2122#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "firebase": "^9.6.11",
+    "firebase-admin": "^10.0.2"
   }
 }
