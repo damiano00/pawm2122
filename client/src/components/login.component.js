@@ -10,7 +10,7 @@ export default class Login extends Component {
                     setLoginEmail(event.target.value);
                     }}/>
                 <input placeholder="Password..." onChange={(event) => {
-                    setLoginPassword(event.target.value);
+                    setLoginPassword(event.target.value);                    
                     }}/>
                 <button> Login </button>
             </form>

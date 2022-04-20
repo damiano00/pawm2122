@@ -15,6 +15,18 @@ export default function App() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   
+  // todo to delete, controllare riga 87
+  const printAuthUser = async () => {
+    auth.onAuthStateChanged(user => {
+      console.log(user)
+      if (user) {
+        return auth.currentUser.email
+      } else {
+        return "ciao io pippo"
+      }
+    })
+  }
+
   const signup = async () => {
     try {
       const user = await createUserWithEmailAndPassword(
@@ -62,7 +74,7 @@ export default function App() {
           <div>
             <h3> Sign Up </h3>
             <input placeholder="Email..." onChange={(event) => {
-                setSignupEmail(event.target.value);
+                setSignupEmail(event.target.value);              
                 }}/>
             <input placeholder="Password..." onChange={(event) => {
                 setSignupPassword(event.target.value);
@@ -72,6 +84,7 @@ export default function App() {
 
           <div>
             <h4> User logged in: </h4>
+            {printAuthUser}
             <button> Sign Out </button>
           </div>
         </div>
