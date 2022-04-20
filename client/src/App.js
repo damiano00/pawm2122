@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from "./components/login.component.js";
-import SignUp from "./components/signup.component.js";
+import { auth } from './firebase-config';
+//import Login from "./components/login.component.js";
+//import SignUp from "./components/signup.component.js";
 
 export default function App() {
   
@@ -15,13 +15,24 @@ export default function App() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   
-  const signup = async() => {
-
-    const user = await createUserWithEmailAndPassword()
+  const signup = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        signupEmail,
+        signupPassword
+      );
+      console.log(user)
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  const login = async () => {
 
   }
-  const login = async() => {}
-  const logout = async() => {}
+  const logout = async () => {
+
+  }
 
   React.useEffect(()=>{
     fetch("/auth")
@@ -33,16 +44,38 @@ export default function App() {
     <div className='App'>
       <header className="App-header">
         <div>
+
           <p>{!data ? "Loading..." : data}</p>
           <h1> ToDo App</h1>
-          <Login></Login>
-          <SignUp></SignUp>
+
+          <div>
+            <h3> Login </h3>
+            <input placeholder="Email..." onChange={(event) => {
+                setLoginEmail(event.target.value);
+                }}/>
+            <input placeholder="Password..." onChange={(event) => {
+                setLoginPassword(event.target.value);
+                }}/>
+            <button> Login </button>
+          </div>
+
+          <div>
+            <h3> Sign Up </h3>
+            <input placeholder="Email..." onChange={(event) => {
+                setSignupEmail(event.target.value);
+                }}/>
+            <input placeholder="Password..." onChange={(event) => {
+                setSignupPassword(event.target.value);
+                }}/>
+            <button onClick={signup}> Sign Up </button>
+          </div>
+
+          <div>
+            <h4> User logged in: </h4>
+            <button> Sign Out </button>
+          </div>
         </div>
       </header>
-      <footer>
-          <h4> User logged in: </h4>
-          <button>Sign Out</button>
-      </footer>
     </div>
     );
   }
