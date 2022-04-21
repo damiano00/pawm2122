@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import App from "../App.js";
 
 export default class Login extends Component {
     
     render() {
         return (
-            <form>
+            <form>            
                 <h3> Login </h3>
-                <input placeholder="Email..." onChange={(event) => {
-                    setLoginEmail(event.target.value);
+                <input placeholder="Email..." onChange={(event) => {                
+                    App.setLoginEmail(event.target.value);
                     }}/>
                 <input placeholder="Password..." onChange={(event) => {
-                    setLoginPassword(event.target.value);                    
+                    App.setLoginPassword(event.target.value);
                     }}/>
                 <button> Login </button>
             </form>

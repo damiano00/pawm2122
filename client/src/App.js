@@ -1,6 +1,11 @@
 import React from 'react';
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import './App.css';
 import { auth } from './firebase-config';
 //import Login from "./components/login.component.js";
@@ -14,18 +19,13 @@ export default function App() {
   const [signupPassword, setSignupPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  
-  // todo to delete, controllare riga 87
-  const printAuthUser = async () => {
-    auth.onAuthStateChanged(user => {
-      console.log(user)
-      if (user) {
-        return auth.currentUser.email
-      } else {
-        return "ciao io pippo"
-      }
-    })
-  }
+
+  const [user, setUser] = useState({});
+
+  onAuthStateChanged(auth, (currentUser) => {
+    if(currentUser)
+    setUser(currentUser);    
+  })
 
   const signup = async () => {
     try {
@@ -34,23 +34,34 @@ export default function App() {
         signupEmail,
         signupPassword
       );
-      console.log(user)
+      console.log(user);
     } catch (error) {
       console.log(error.message);
     }
   }
+
   const login = async () => {
-
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      console.log(user);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
+
   const logout = async () => {
-
-  }
+    await signOut(auth);
+  };
 
   React.useEffect(()=>{
     fetch("/auth")
     .then((res) => res.json())
     .then((data) => setData(data.message));
-  }, []);
+  }, [])
 
   return (
     <div className='App'>
@@ -60,21 +71,21 @@ export default function App() {
           <p>{!data ? "Loading..." : data}</p>
           <h1> ToDo App</h1>
 
-          <div>
-            <h3> Login </h3>
-            <input placeholder="Email..." onChange={(event) => {
+          <div className='Login'>          
+          <h3> Login </h3>
+            <input placeholder="Email..." onChange={(event) => {                
                 setLoginEmail(event.target.value);
                 }}/>
             <input placeholder="Password..." onChange={(event) => {
                 setLoginPassword(event.target.value);
                 }}/>
-            <button> Login </button>
+            <button onClick={login}> Login </button>
           </div>
 
-          <div>
-            <h3> Sign Up </h3>
+          <div className='Signup'>
+          <h3> Sign Up </h3>
             <input placeholder="Email..." onChange={(event) => {
-                setSignupEmail(event.target.value);              
+                setSignupEmail(event.target.value);
                 }}/>
             <input placeholder="Password..." onChange={(event) => {
                 setSignupPassword(event.target.value);
@@ -84,11 +95,12 @@ export default function App() {
 
           <div>
             <h4> User logged in: </h4>
-            {printAuthUser}
-            <button> Sign Out </button>
+            {user.email}
+            <button onClick={logout}> Sign Out </button>
           </div>
+
         </div>
       </header>
     </div>
-    );
+    )
   }
