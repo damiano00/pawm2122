@@ -1,20 +1,18 @@
 import React, { Component } from "react";
-import App from "../App.js";
 
-export default class SignUp extends Component {
+const SignUp = (props) => {
+    return (
+        <form>
+            <h3> Sign Up </h3>
+            <input placeholder="Email..." onChange={(event) => {
+                props.setSignupEmail(event.target.value);
+                }}/>
+            <input placeholder="Password..." onChange={(event) => {
+                props.setSignupPassword(event.target.value);
+                }}/>
+            <button onClick={props.signup()}> Sign Up </button>
+        </form>
+    );
+}   
 
-    render(){
-        return (
-            <form>
-                <h3> Sign Up </h3>
-                <input placeholder="Email..." onChange={(event) => {
-                    App.setSignupEmail(event.target.value);
-                    }}/>
-                <input placeholder="Password..." onChange={(event) => {
-                    App.setSignupPassword(event.target.value);
-                    }}/>
-                <button> Sign Up </button>
-            </form>
-        );
-    }
-}
+export default SignUp;
