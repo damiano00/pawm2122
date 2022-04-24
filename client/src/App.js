@@ -10,6 +10,8 @@ import './App.css';
 import { auth } from './firebase-config';
 import Login from "./components/login.component.js";
 import SignUp from "./components/signup.component.js";
+import { async } from '@firebase/util';
+
 
 export default function App(props) {
 
@@ -25,17 +27,18 @@ export default function App(props) {
   function changeLoginEmail(e){setLoginEmail(e);}
   function changeLoginPassword(e){setLoginPassword(e);}
 
+/*
   function callLogin(){login()}
-  function callSignUp(){signup()}
+  function callSignUp(){signup()} */
 
   const [user, setUser] = useState({});
-
+  
   onAuthStateChanged(auth, (currentUser) => {
-    if(currentUser)
-    setUser(currentUser);
+    if(currentUser){ setUser(currentUser);}  
   })
 
-  const signup = async () => {
+  const signup = async () =>  {
+    console.log('hey hai schiacciato il bottone signup')
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -44,6 +47,8 @@ export default function App(props) {
       );
       console.log(user);
     } catch (error) {
+      console.log(signupEmail)
+      console.log(signupPassword)
       console.log(error.message);
     }
   }
@@ -62,7 +67,11 @@ export default function App(props) {
   }
 
   const logout = async () => {
-    await signOut(auth);
+    auth.signOut().then(function() {
+      setUser("")
+    }).catch(function(error) {
+      // An error happened.
+    });
   };
 
   React.useEffect(()=>{
@@ -82,13 +91,14 @@ export default function App(props) {
           <Login
           setLoginEmail={changeLoginEmail}
           setLoginPassword={changeLoginPassword}
-          login={callLogin}
+          setlogin = {login}
+      
           ></Login>
 
           <SignUp
           setSignupEmail={changeSignUpEmail}
           setSignupPassword={changeSignUpPassword}
-          signup={callSignUp}
+          setsignup = {signup}
           ></SignUp>
 
           <div>

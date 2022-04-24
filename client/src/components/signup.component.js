@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-const SignUp = (props) => {
+function SignUp(props){
     return (
-        <form>
+        <div>
             <h3> Sign Up </h3>
             <input placeholder="Email..." onChange={(event) => {
                 props.setSignupEmail(event.target.value);
@@ -10,9 +10,9 @@ const SignUp = (props) => {
             <input placeholder="Password..." onChange={(event) => {
                 props.setSignupPassword(event.target.value);
                 }}/>
-            <button onClick={props.signup()}> Sign Up </button>
-        </form>
-    );
+            <button onClick={props.setsignup}> Sign Up </button>
+        </div>
+    )
 }   
 
 export default SignUp;

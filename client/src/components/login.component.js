@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-const Login = (props) => {
-
+function Login(props){
     return (
-        <form>            
+        <div>            
             <h3> Login </h3>
             <input placeholder="Email..." onChange={(event) => {                
                 props.setLoginEmail(event.target.value);
@@ -11,9 +10,9 @@ const Login = (props) => {
             <input placeholder="Password..." onChange={(event) => {
                 props.setLoginPassword(event.target.value);
                 }}/>
-            <button onClick={props.login()}> Login </button>
-        </form>
-    );
+            <button onClick={props.setlogin}> Login </button>
+        </div>
+    )
 }
 
 export default Login;
