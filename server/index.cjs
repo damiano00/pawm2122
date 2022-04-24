@@ -2,8 +2,12 @@ const express = require("express");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.get("/auth", (req, res) => {
-    res.json({ message: "Server collegato!" })
+app.get("/api", (req, res) => {
+    res.json({ message: "api page" })
+});
+
+app.get("/", (req, res) => {
+    res.json({ message: "server collegato" })
 });
 
 app.listen(PORT, () => {
