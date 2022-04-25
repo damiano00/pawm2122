@@ -7,7 +7,7 @@ function SignUp(props){
             <input placeholder="Email..." onChange={(event) => {
                 props.setSignupEmail(event.target.value);
                 }}/>
-            <input placeholder="Password..." onChange={(event) => {
+            <input type="password" id="pwd" name="pwd" placeholder="Password..." onChange={(event) => {
                 props.setSignupPassword(event.target.value);
                 }}/>
             <button onClick={props.setsignup}> Sign Up </button>

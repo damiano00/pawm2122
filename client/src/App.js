@@ -39,6 +39,8 @@ export default function App(props) {
         signupPassword
       );
       console.log(user);
+      navigate('/pages/Home');
+      
     } catch (error) {
       console.log(signupEmail)
       console.log(signupPassword)

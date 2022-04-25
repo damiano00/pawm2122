@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import TaskManager from "../components/TaskManager";
 import { onAuthStateChanged } from 'firebase/auth';
 import { ref, onValue } from 'firebase/database';
@@ -18,14 +18,8 @@ const INIT_TASKS = [];
     date: new Date(2022, 4, 20),
     }*/
 
-export default function Home(props) {
-    //const[userID, setUserID] = useState();
-
-    onAuthStateChanged(auth, (currentUser) => {
-        if(currentUser){}
-    })
-
-    getData();
+const Home = (props) => {
+ 
 
     function snapshotToArray(snapshot) {
         var tmp = {};
@@ -36,19 +30,22 @@ export default function Home(props) {
             tmp.date = childSnapshot.child('taskDate').val();
             INIT_TASKS.push({...tmp});
         })
-        console.log('INIT TASK -->' + INIT_TASKS);
+        
     };
 
-    function getData(){
+    const getData = () => {
         console.log('passo dentro getData()');
         const data = ref(database, 'users/' + auth.currentUser.uid);    
         onValue(data, (snapshot) => {
             snapshotToArray(snapshot);
         });
     }
+    
+    
 
     const [initiallist, setlist] = useState(INIT_TASKS);
-
+    getData();
+    
     const dataReceiveHandler = (props) => {
         console.log('passo dentro handler(props)');
         const iselementPresent = initiallist.some((p) => p.taskid === props.taskid);
@@ -67,11 +64,12 @@ export default function Home(props) {
     };
 
   return (
-    <div className="App">
-        <TaskManager
+    <div className="App" >
+        <TaskManager 
         onDatareceived={dataReceiveHandler}
         taskslist={initiallist}
         ></TaskManager>
     </div>
   );
 }
+export default Home;
