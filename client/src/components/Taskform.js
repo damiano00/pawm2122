@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./Taskform.css";
+import { database, auth } from '../firebase-config';
+import { ref, set} from 'firebase/database';
+import { onAuthStateChanged } from "firebase/auth";
+
+onAuthStateChanged(auth, (currentUser) => {})
 
 const Taskform = (props) => {
+  
   const taskSubmithandler = (event) => {
     event.preventDefault();
     console.log("in submit handler");
@@ -9,12 +15,19 @@ const Taskform = (props) => {
     updateInput(() => "");
 
     const newtask = {
-      taskid: Math.random().toString(),
+      taskid: Math.round((Math.random()*10000)).toString(),
       taskaction: inputEntered,
       status: "N",
       date: new Date(),
     };
     props.ondataadd(newtask);
+
+    set(ref(database, 'users/' + auth.currentUser.uid +'/'+ newtask.taskid), {
+        taskID: newtask.taskid,
+        taskAction: newtask.taskaction,
+        taskStatus: newtask.status,
+        taskDate: newtask.date,
+    });
   };
 
   const [inputEntered, updateInput] = useState("");

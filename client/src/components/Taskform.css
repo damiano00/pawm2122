@@ -1,27 +1,19 @@
 .taskform {
   border-top: 40px;
-  background: #303030;
   color: white;
   font-size: 18px;
-  border-radius: 4px 20px;
   padding: 10px;
   padding-left: 20px;
-  margin: 10px;
+  margin: px;
   width: auto;
   display: grid;
   grid-template-columns: 0.5fr 10fr;
 }
 
-.taskform:hover {
-  background: #505050;
-}
-
 .ctheader {
   background:chartreuse;
   color:black;
-
   font-size: 18px;
-  border-radius: 4px 20px;
   padding: 10px;
   padding-left: 20px;
   margin: 10px;
@@ -29,13 +21,13 @@
   display: grid;
 }
 .ctheader:hover {
-  background: #505050;
+  background: chartreuse;
 }
 
 .plusclass {
   height: 25px;
   width: 25px;
-  background-color: rgba(196, 123, 14, 0.678);
+  background-color: rgba(11, 214, 0, 0.678);
   border-radius: 50%;
   font-size: 20px;
   font-weight: bold;
@@ -43,7 +35,7 @@
   place-items: center;
 }
 .plusclass:hover {
-  background-color: rgba(0, 0, 0, 0.678);
+  background-color: rgba(0, 157, 16, 0.678);
 }
 .ipclass {
   outline: none !important;

@@ -3,7 +3,7 @@
   background: skyblue;
   margin: 5%;
   height: auto;
-  border: 8px solid wheat;
+  border: 8px solid rgb(40, 225, 12);
   border-radius: 12px 8px 5px;
   grid-template-areas: "header" "content" "footer";
   grid-template-columns: 1fr;

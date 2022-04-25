@@ -27,7 +27,7 @@ export default function App(props) {
   const navigate = useNavigate();
   
   onAuthStateChanged(auth, (currentUser) => {
-    if(currentUser){ setUser(currentUser);}  
+    if(currentUser){ setUser(currentUser);}
   })
   
   const signup = async () =>  {
