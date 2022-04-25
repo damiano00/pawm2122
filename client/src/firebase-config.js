@@ -17,16 +17,3 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 
 export { auth, database };
-
-/*
-{
-  "rules": {
-    "some_path": {
-      "$uid": {
-        ".read": "auth != null && auth.uid == $uid",
-        ".write": "auth != null && auth.uid == $uid",
-      }
-    }
-  }
-}
-*/
