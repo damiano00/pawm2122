@@ -5,21 +5,8 @@ import { ref, onValue } from 'firebase/database';
 import { database, auth } from '../firebase-config';
 
 const INIT_TASKS = [];
-/*    {
-    taskid: "t1",
-    taskaction: "Sample Task 1",
-    status: "Y",
-    date: new Date(2022, 4, 22),
-    },
-    {
-    taskid: "t2",
-    taskaction: "Sample Task 2",
-    status: "N",
-    date: new Date(2022, 4, 20),
-    }*/
 
 const Home = (props) => {
- 
 
     function snapshotToArray(snapshot) {
         var tmp = {};
