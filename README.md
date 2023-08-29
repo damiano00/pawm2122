@@ -1,5 +1,7 @@
 # pawm2122 project
-PROGETTAZIONE DI APPLICAZIONI WEB E MOBILE - 
-WEB AND MOBILE APPLICATIONS DESIGN
 
-Simple ToDo List web app developed using React
+WEB AND MOBILE APP DESIGN
+
+Final Exam
+
+ToDo List web app developed using React
